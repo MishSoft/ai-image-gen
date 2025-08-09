@@ -5,6 +5,7 @@ import { supabase } from "../lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
@@ -59,10 +60,14 @@ export function LoginForm() {
         />
       </div>
 
-      <Button type="submit" disabled={loading}>
-        {loading ? "Logging in..." : "Login"}
-      </Button>
-
+      <div className="flex flex-col">
+        <Button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </Button>
+        <span>
+          Don&apos;t have an account? <Link href="/signup">Sign up</Link>
+        </span>
+      </div>
       {error && <p className="text-red-600 mt-3">{error}</p>}
       {message && <p className="text-green-600 mt-3">{message}</p>}
     </form>
